@@ -34,7 +34,6 @@ int main(){
     if (scanf("%d",&n)!= 1) return 0;
 
     artefak daftar[n];
-    artefak temp;
 
     for (int i = 0; i <n; i++){
         scanf("%s %s %d %d",daftar[i].nama, daftar[i].kategori, &daftar[i].tahun, &daftar[i].value);
@@ -42,8 +41,10 @@ int main(){
 
     qsort (daftar, n, sizeof(artefak),komper);
 
-    for (int j = 0; j<n; j++){
+    for (int j = 0; j<n-1; j++){
         printf("%s %s %d %d\n",daftar[j].nama,daftar[j].kategori,daftar[j].tahun,daftar[j].value);
     }
+    int k = n-1;
+    printf("%s %s %d %d",daftar[k].nama,daftar[k].kategori,daftar[k].tahun,daftar[k].value);
     return 0;
 }
