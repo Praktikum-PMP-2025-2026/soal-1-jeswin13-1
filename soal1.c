@@ -10,12 +10,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 
 
 typedef struct{
-    char nama [100];
-    char kategori [100];
+    char nama [101];
+    char kategori [101];
     int tahun;
     int value;
 } artefak;
@@ -23,15 +22,17 @@ typedef struct{
 int komper(const void *a,const void *b){
     artefak*x = (artefak *)a;
     artefak *y = (artefak*)b;
-    return strcmp (x->kategori,y->kategori);
-    if (x->tahun>y->tahun) return (x->tahun - y->tahun);
-    if (x->value<y->value) return (x->value - y->value);
+    int c = strcmp(x->kategori,y->kategori);
+    if (c != 0) return c;
+    if (x->tahun!=y->tahun)return (x->tahun - y->tahun);
+    if (x->value!=y->value)return (x->value - y->value);
+    return strcmp(x->nama,y->nama);
 
 
 }
 int main(){
     int n;
-    if (scanf("%d",&n)!= 1) return 0;
+    scanf("%d",&n);
 
     artefak daftar[n];
 
@@ -39,12 +40,15 @@ int main(){
         scanf("%s %s %d %d",daftar[i].nama, daftar[i].kategori, &daftar[i].tahun, &daftar[i].value);
     }
 
-    qsort (daftar, n, sizeof(artefak),komper);
+    qsort(daftar, n, sizeof(artefak),komper);
 
-    for (int j = 0; j<n-1; j++){
-        printf("%s %s %d %d\n",daftar[j].nama,daftar[j].kategori,daftar[j].tahun,daftar[j].value);
+    for (int i = 0; i<n; i++){
+        printf("%s %s %d %d\n",
+        daftar[i].nama,
+        daftar[i].kategori,
+        daftar[i].tahun,
+        daftar[i].value);
     }
-    int k = n-1;
-    printf("%s %s %d %d",daftar[k].nama,daftar[k].kategori,daftar[k].tahun,daftar[k].value);
+
     return 0;
 }
