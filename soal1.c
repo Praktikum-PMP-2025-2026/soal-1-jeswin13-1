@@ -25,7 +25,7 @@ int komper(const void *a,const void *b){
     int c = strcmp(x->kategori,y->kategori);
     if (c != 0) return c;
     if (x->tahun!=y->tahun)return (x->tahun - y->tahun);
-    if (x->value!=y->value)return (x->value - y->value);
+    if (x->value!=y->value)return (y->value - x->value);
     return strcmp(x->nama,y->nama);
 
 
